@@ -17,8 +17,8 @@ namespace ticketSystem
         SqlConnection cnn;
         SqlCommand command;
         Employee Employee = new Employee();
-
-
+        TicketDao tDao = new TicketDao();
+        
         DateTime date = DateTime.Now;
         
 
@@ -32,16 +32,20 @@ namespace ticketSystem
             EmployeeDao eDao = new EmployeeDao();
             Employee = eDao.getEmployee(Request.QueryString["name"]);
             Author.Text = Employee.Username;
-
-
+           
             if (Request.QueryString["request"] == "edit")
             {
                 //Get Ticket info and fill boxes on edit request
                 TicketDao tDao = new TicketDao();
                 Ticket Ticket = new Ticket();
                 Ticket = tDao.getTicket(int.Parse(Request.QueryString["ticket"]));
-                Content.Text = Ticket.Content;
+                if (string.IsNullOrEmpty(Content.Text))
+                {
+                    Content.Text = Ticket.Content;
+                    Status.Text = Ticket.Status;
+                }
             }
+            
 
         }
 
@@ -77,7 +81,48 @@ namespace ticketSystem
 
         protected void backButton_Click(object sender, EventArgs e)
         {
-            Response.AddHeader("REFRESH", ".5;URL=Home.aspx?name="+Request.QueryString["name"]);
+            if (string.IsNullOrEmpty(Request.QueryString["user"])){
+                Response.AddHeader("REFRESH", ".5;URL=Home.aspx?name=" + Request.QueryString["name"]);
+            }
+            else
+            {
+                Response.AddHeader("REFRESH", ".5;URL=Home.aspx?name=" + Request.QueryString["user"]);
+            }
+        }
+
+        protected void editButton_Click(object sender, EventArgs e)
+        {
+            Ticket ticket = new Ticket();
+            ticket = tDao.getTicket(int.Parse(Request.QueryString["ticket"]));
+            ticket.Content = Content.Text;
+            try
+            {
+                cnn.Open();
+                command = new SqlCommand("Update dbo.Tickets set Author = @Author, Content = @Content, Owner = @Owner, Status = @Status, Date = @Date Where TicketId = @TicketId;" , cnn);
+                command.Parameters.AddWithValue("@Author", this.Employee.Username);
+                command.Parameters.AddWithValue("@Content", this.Content.Text);
+                command.Parameters.AddWithValue("@Owner", this.Employee.Id);
+                command.Parameters.AddWithValue("@Status", this.Status.SelectedValue);
+                command.Parameters.AddWithValue("@Date", this.date);
+                command.Parameters.AddWithValue("@TicketId", ticket.Ticketid);
+
+                int i = command.ExecuteNonQuery();
+
+                cnn.Close();
+                //Redirect("home.aspx?name="+Request.QueryString["name"]);
+            }
+            catch (SqlException ex)
+            {
+                Label.Text = "Error in SQL! " + ex.Message;
+            }
+            finally
+            {
+                if (cnn.State == ConnectionState.Open)
+                {
+
+                }
+                Label.Text = "Ticket changed Successfully";
+            }
         }
     }
 }

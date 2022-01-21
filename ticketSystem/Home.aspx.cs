@@ -62,6 +62,7 @@ namespace ticketSystem
             //Null Checker for selected listbox
             if(userTickets.SelectedValue == "")
             {
+                Response.Redirect("Home.aspx?name=" + Request.QueryString["name"]);
                 Welcome.Text = "you gotta select a ticket first :p";
             }
             else {
@@ -73,6 +74,18 @@ namespace ticketSystem
             }
         }
 
+        //Delete button for Owned Tickets
+        protected void deleteButton_Click(object sender, EventArgs e)
+        {
+            Ticket ticket = new Ticket();
+
+            String selected = userTickets.SelectedValue;
+            String[] values = selected.Split(',');
+            ticket = tDao.getTicket(int.Parse(values[0]));
+            Welcome.Text = tDao.deleteTicket(ticket.Ticketid);
+            Response.Redirect("Home.aspx?name=" + Request.QueryString["name"]);
+
+        }
 
         //Edit button for unowned Tickets
         protected void Edit_Click(object sender, EventArgs e)
@@ -88,9 +101,9 @@ namespace ticketSystem
             {
                 //pull the ticket from sql then redirect to Ticket page to edit
                 String selected = unownedTickets.SelectedValue;
-                String[] values = selected.Split(',');;
+                String[] values = selected.Split(',');
                 ticket = tDao.getTicket(int.Parse(values[0]));
-                Response.Redirect("Ticket.aspx?name="+Request.QueryString["name"]+" &ticket="+ticket.Ticketid+"&request=edit");
+                Response.Redirect("Ticket.aspx?user="+Request.QueryString["name"]+"&name="+ticket.Author+"&ticket="+ticket.Ticketid+"&request=edit");
             }
         }
 
@@ -104,6 +117,15 @@ namespace ticketSystem
 
         }
 
-
+        //Delete for unowned Tickets
+        protected void Delete_Click(object sender, EventArgs e)
+        {
+            Ticket ticket = new Ticket();
+            String selected = unownedTickets.SelectedValue;
+            String[] values = selected.Split(',');
+            ticket = tDao.getTicket(int.Parse(values[0]));
+            Welcome.Text = tDao.deleteTicket(ticket.Ticketid);
+            Response.Redirect("Home.aspx?name=" + Request.QueryString["name"]);
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace ticketSystem.Dao
         DataTable EntryTable = null;
         String connectionString = null;
         SqlConnection cnn;
+        SqlCommand command;
 
         public TicketDao()
         {
@@ -61,7 +62,8 @@ namespace ticketSystem.Dao
             }
             return Tickets;
         }
-
+        
+        //Method to retrieve a ticket
         public Ticket getTicket(int Id)
         {
             Ticket Ticket = new Ticket();
@@ -77,6 +79,39 @@ namespace ticketSystem.Dao
                 Ticket.Date = row["Date"].ToString();
             }
             return Ticket;
+        }
+
+        //Method to edit a ticket
+       /* public Ticket editTicket(int id, string content, DateTime date)
+        {
+           
+
+        }
+        */
+        //Method to Delete a ticket
+        public string deleteTicket(int Id)
+        {
+            Ticket Ticket = new Ticket();
+            string result = Id+" Deleted successfully";
+            try
+            {
+                cnn.Open();
+                command = new SqlCommand($"Delete from Tickets where TicketId = '{Id}';", cnn);
+                int r = command.ExecuteNonQuery();
+                cnn.Close();
+            }
+            catch (SqlException ex)
+            {
+                result = "Error in SQL" + ex.Message;
+            }
+            finally
+            {
+                if (cnn.State == ConnectionState.Open)
+                {
+                    cnn.Close();
+                }
+            }
+            return result;
         }
     }
 
