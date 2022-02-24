@@ -4,7 +4,6 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
     <style type="text/css">
         #form1 {
             height: 376px;
@@ -39,9 +38,9 @@
         <br />
         <br />
         &nbsp;
-        <asp:Button ID="Logins" runat="server" OnClick="Logins_Click" Text="Login" style="height: 26px" />
+        <asp:Button ID="Logins" runat="server" OnClick="Logins_Click" Text="Login" style="height: 26px" Height="25px" Width="77px" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="Register" runat="server" OnClick="Register_Click" Text="Register" />
+        <asp:Button ID="Register" runat="server" OnClick="Register_Click" Text="Register" Height="25px" Width="77px" />
         <br />
         </div>
     </form>
