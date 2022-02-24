@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ticketSystem {
-    
-    
-    public partial class Home {
-        
+namespace ticketSystem
+{
+
+
+    public partial class Home
+    {
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace ticketSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// Welcome control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace ticketSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Welcome;
-        
+
         /// <summary>
         /// userTickets control.
         /// </summary>
@@ -38,16 +40,7 @@ namespace ticketSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListBox userTickets;
-        
-        /// <summary>
-        /// unownedTickets control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox unownedTickets;
-        
+
         /// <summary>
         /// createButton control.
         /// </summary>
@@ -56,7 +49,7 @@ namespace ticketSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button createButton;
-        
+
         /// <summary>
         /// editButton control.
         /// </summary>
@@ -65,7 +58,7 @@ namespace ticketSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button editButton;
-        
+
         /// <summary>
         /// deleteButton control.
         /// </summary>
@@ -74,7 +67,16 @@ namespace ticketSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button deleteButton;
-        
+
+        /// <summary>
+        /// unownedTickets control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox unownedTickets;
+
         /// <summary>
         /// Edit control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace ticketSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Edit;
-        
+
         /// <summary>
         /// Delete control.
         /// </summary>

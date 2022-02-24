@@ -7,12 +7,16 @@
     <title></title>
     <style type="text/css">
         #form1 {
-            height: 368px;
+            height: 376px;
+            border: 5px; 
+            text-align: center;
+            
         }
     </style>
        <link href="css/bootstrap.min.css" rel="stylesheet" />
        <script src="Scripts/bootstrap.min.js"></script>
        <script src="js/bootstrap.min.js"></script>
+  
 </head>
 <body>
     <form id="form1" runat="server">
@@ -51,3 +55,5 @@
     </form>
 </body>
 </html>
+
+

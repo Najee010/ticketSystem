@@ -7,8 +7,12 @@
     <title></title>
     <style type="text/css">
         #form1 {
-            height: 425px;
+            height: 376px;
+            border: 5px; 
+            text-align: center;
+            
         }
+
 
     </style>
        <link href="css/bootstrap.min.css" rel="stylesheet" />
@@ -53,3 +57,4 @@
     </form>
 </body>
 </html>
+
